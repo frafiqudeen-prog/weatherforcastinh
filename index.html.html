@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071426">
+  <title>Sky3D — Live Weather</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/"><span class="brand-mark">✦</span> SKY<span>3D</span></a>
+      <div class="top-note"><span class="live-dot"></span> LIVE WEATHER EXPERIENCE</div>
+      <button class="unit-toggle" id="unitToggle" aria-label="Toggle temperature unit">°C <span>/ °F</span></button>
+    </header>
+
+    <section class="intro">
+      <div><p class="eyebrow">WEATHER, REIMAGINED</p><h1>Feel the sky.<br><span>See the weather.</span></h1></div>
+      <p class="intro-copy">Real-time conditions brought to life in an immersive 3D atmosphere.</p>
+    </section>
+
+    <section class="search-row">
+      <div class="search-box"><span>⌕</span><input id="cityInput" value="Madurai" placeholder="Search a city..." autocomplete="off"><button id="searchBtn">Explore <span>↗</span></button></div>
+      <button class="location-btn" id="locationBtn" title="Use my location">◎ <span>My location</span></button>
+    </section>
+
+    <section class="hero-card">
+      <div class="scene" id="scene">
+        <div class="scene-top"><span class="scene-label"><i></i> LIVE 3D ATMOSPHERE</span><span class="scene-condition" id="sceneCondition">Loading sky...</span></div>
+        <canvas id="weatherCanvas"></canvas>
+        <div class="scene-caption"><span class="scene-icon" id="weatherEmoji">☁️</span><div><strong id="sceneTitle">Reading the sky</strong><small id="sceneSubtitle">Preparing your atmosphere</small></div></div>
+        <div class="scene-hint">ANIMATED WEATHER VISUALIZATION</div>
+      </div>
+      <div class="current-panel">
+        <div class="place-line"><div><p class="eyebrow">CURRENT WEATHER</p><h2 id="placeName">Madurai, India</h2><p class="muted" id="localTime">Local time</p></div><span class="live-pill"><i></i> LIVE</span></div>
+        <div class="temperature"><span id="temperature">--</span><sup id="degree">°C</sup></div>
+        <p class="condition" id="condition">Fetching conditions...</p>
+        <p class="feels">Feels like <strong id="feels">--°</strong></p>
+        <div class="metrics">
+          <div class="metric"><span>💧</span><div><small>Humidity</small><strong id="humidity">--%</strong></div></div>
+          <div class="metric"><span>🌬️</span><div><small>Wind speed</small><strong id="wind">-- km/h</strong></div></div>
+          <div class="metric"><span>🌧️</span><div><small>Rainfall</small><strong id="rain">-- mm</strong></div></div>
+          <div class="metric"><span>☁️</span><div><small>Cloud cover</small><strong id="cloud">--%</strong></div></div>
+        </div>
+        <p class="updated" id="updated">Waiting for weather data</p>
+      </div>
+    </section>
+
+    <section class="forecast-section">
+      <div class="section-heading"><div><p class="eyebrow">THE NEXT 24 HOURS</p><h2>Hourly forecast</h2></div><span class="muted">Your day, hour by hour</span></div>
+      <div class="hourly-list" id="hourlyList"><div class="loading">Loading hourly forecast...</div></div>
+    </section>
+
+    <section class="forecast-section">
+      <div class="section-heading"><div><p class="eyebrow">PLAN AHEAD</p><h2>5-day forecast</h2></div><span class="muted">A glimpse into the days ahead</span></div>
+      <div class="daily-grid" id="dailyGrid"><div class="loading">Loading 5-day forecast...</div></div>
+    </section>
+    <footer><span class="brand small-brand">✦ SKY<span>3D</span></span><span>Weather data by Open-Meteo · 3D visuals are illustrative</span></footer>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script type="module" src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
