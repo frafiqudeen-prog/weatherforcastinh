@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, request, jsonify
 import requests
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.', static_folder='.', static_url_path='')
 BASE = "https://api.open-meteo.com/v1"
 
 @app.route("/")
